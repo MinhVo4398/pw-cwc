@@ -16,6 +16,6 @@ test("Search and Verify new url and heading", async ({ page }) => {
     await searchInput.fill('India');
     await searchInput.press('Enter');
     expect(page.url()).toContain("/search/?q=India");
-    await expect(page.locator("//div[@class='column_one']//h2")).toContainText('India');
+    await expect(page.locator("//div[@class='column_one']//h2")).toHaveText('Search Results for "India"');
   });
   
