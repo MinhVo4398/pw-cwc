@@ -18,4 +18,27 @@ test("Search and Verify new url and heading", async ({ page }) => {
     expect(page.url()).toContain("/search/?q=India");
     await expect(page.locator("//div[@class='column_one']//h2")).toHaveText('Search Results for "India"');
   });
+
+  test("Verify menu tab and link", async ({ page }) => {
+    await page.goto("https://www.cricketworld.com/");
+    
+    const menuTabs = [
+        'Live Scores',
+        'Live',
+        'Betting',
+        'News',
+        'Photos',
+        'TV',
+        'Women',
+        'Countries',
+        'County Cricket 2024',
+        'Features',
+        'Club',
+        'Groundcare',
+    ]
+
+    const listItems = page.locator("//ul[@class='etoz-slide']//li//a[contains(@href,'cricket')]//span");
+    console.log(await listItems.allInnerTexts());
+    expect(await listItems.allInnerTexts()).toEqual(menuTabs);
+  });
   
